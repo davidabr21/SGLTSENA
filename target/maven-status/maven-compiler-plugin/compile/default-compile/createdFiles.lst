@@ -1,0 +1,14 @@
+com\sena\entities\Persona.class
+com\sena\entities\Persona_.class
+com\sena\entities\Equipo_.class
+com\sena\dao\FacturaDAO.class
+com\sena\dao\LineaDAO.class
+com\sena\entities\Factura.class
+com\sena\dao\EquipoDAO.class
+com\sena\beans\PersonaBean.class
+com\sena\beans\EquipoBean.class
+com\sena\entities\Linea.class
+com\sena\entities\Factura_.class
+com\sena\entities\Linea_.class
+com\sena\dao\PersonaDAO.class
+com\sena\entities\Equipo.class
