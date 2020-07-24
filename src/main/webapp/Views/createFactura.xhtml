@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template = "../Templates/Template.xhtml">
+            <ui:define name = "contenido">
+                <h2 style="text-align: center; margin-bottom: 10px">Registrar Factura</h2>
+                <hr/>
+                
+                <h:form id="myForm">
+                    <f:passThroughAttribute name="autocomplete" value="off"/>
+                    <h:messages globalOnly="true" id="globalError" class="alert alert-info" style="margin: 5px"/>
+                    <div class="form-group">
+                        <label for="nombre">Número de Factura </label>
+                        <h:inputText id="num" value = "#{factura.objectRegister.facNumero}" class="form-control" required="true" requiredMessage="El campo 'Número de Factura' es obligatorio"/> 
+                        <h:messages id="error1" for="num" class="alert alert-danger" style="margin: 5px"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Número de Línea</label>
+                        <h:selectOneMenu value="#{factura.objectRegister.linNumeroLinea}" class="custom-select" required="true" requiredMessage="El campo de Persona es obligatorio">
+                            <f:selectItems value="#{lineaBean.all}"  var="obj" itemLabel="#{obj.linNumeroLinea}" itemValue="#{obj.linNumeroLinea}"/>
+                        </h:selectOneMenu>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="nombre">Valor: </label>
+                        <h:inputText id="valor" value = "#{factura.objectRegister.facValor}" class="form-control" required="true" requiredMessage="El campo 'Valor' es obligatorio"/> 
+                        <h:messages id="error3" for="valor" class="alert alert-danger" style="margin: 5px"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="nombre">Fecha Emisión </label>
+                        <h:inputText id="fecha" value = "#{factura.fechaEmision}" class="form-control dateControl" required="true" requiredMessage="El campo 'Fecha Emisión' es obligatorio"/> 
+                        <h:messages id="error4" for="fecha" class="alert alert-danger" style="margin: 5px"/>
+                    </div>
+                    
+                    <script>
+                        $('.dateControl').datepicker({
+                            uiLibrary: 'bootstrap4'
+                        });
+                    </script>
+                     
+                    <h:commandButton class="btn btn-primary" value="Registrar" action="#{factura.create}"/>
+                </h:form>
+                <h:form>
+                    <h:dataTable id="gridFactura" value="#{factura.all}" var="obj" styleClass="table">
+                        <h:column><f:facet name= "header">Id</f:facet>#{obj.facNumero}</h:column>
+                        <h:column><f:facet name= "header">Nombre</f:facet>#{obj.facFechaEmision}</h:column>
+                        <h:column><f:facet name= "header">Apellido</f:facet>#{obj.facValor}</h:column>
+                        <h:column><f:facet name= "header">Eliminar</f:facet>
+                            <h:commandButton actionListener="#{factura.delete(obj)}" value="Eliminar"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

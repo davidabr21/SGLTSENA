@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        
+
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template = "../Templates/Template.xhtml">
+            <ui:define name = "contenido">
+                <h2 style="text-align: center; margin-bottom: 10px">Ver Facturas por Fecha y Persona</h2>
+                <h:form id="formulario">
+                    <div class="form-group">
+                        <label for="fecha">Fecha:</label>
+                        <h:inputText id="fecha" value = "#{factura.fechaEmision}" class="form-control dateControl" required="true" requiredMessage="El campo de 'Fecha' es obligatorio"/> 
+                        <h:messages id="errors1" for="fecha" class="alert alert-danger" style="margin: 5px"/>
+                        
+                        <script>
+                            $('.dateControl').datepicker({
+                                uiLibrary: 'bootstrap4'
+                            });
+                        </script>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Persona</label>
+                        <h:selectOneMenu value="#{factura.perId}" class="custom-select" required="true" requiredMessage="El campo de Persona es obligatorio">
+                            <f:selectItems value="#{persona.all}"  var="person" itemLabel="#{person.perNombre} #{person.perApellido} - (CC. #{person.perCedula})" itemValue="#{person.perId}" />
+                        </h:selectOneMenu>
+                    </div>
+                    <h:commandButton class="btn btn-primary" value="Registrar" action="#{factura.filterFacturas}">
+                         <f:ajax render=":gridFactura :texts"/>
+                    </h:commandButton>
+                </h:form>
+                <h:panelGroup id="texts">
+                    Nombre: <h:outputText value="#{factura.personObject.perNombre}" rendered="#{not empty factura.personObject}" />
+                    Apellido: <h:outputText value="#{factura.personObject.perApellido}" rendered="#{not empty factura.personObject}" />
+                    Cédula: <h:outputText value="#{factura.personObject.perCedula}" rendered="#{not empty factura.personObject}" />
+                    Línea Telefónica <h:outputText value="#{factura.lineaTelefonica}" rendered="#{not empty factura.personObject}" />
+                </h:panelGroup>
+                <h:dataTable id="gridFactura" value="#{factura.facturasResult}" var="obj" styleClass="table">
+                    <h:column><f:facet name= "header">Número de Factura</f:facet>#{obj.facNumero}</h:column>
+                    <h:column><f:facet name= "header">Fecha de Emisión</f:facet>#{obj.facFechaEmision}</h:column>
+                    <h:column><f:facet name= "header">Valor</f:facet>#{obj.facValor}</h:column>
+                    <h:column><f:facet name= "header">Valor</f:facet>#{obj.facValor}</h:column>
+                </h:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <script src="../resources/js/jquery.js"></script>
+        <link rel="stylesheet" href="../resources/css/bootstrap.min.css" />
+        
+        <script src="../resources/js/gijgo.min.js"></script>
+        <link rel="stylesheet" href="../resources/css/gijgo.min.css" />
+        <title>Sistema de Gestión de Líneas Telefónicas</title>
+    </h:head>
+    <h:body>
+        
+        
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">SGLT <span style="font-size:10px">Sistema de Gestión de Líneas Telefónicas</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Inicio</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="create.xhtml">Registrar Línea</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="createPersona.xhtml">Registrar Persona</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="list.xhtml">Consultar Facturas</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="createFactura.xhtml">Registrar Facturas</a>
+                </li>
+              </ul>
+            </div>
+        </nav>
+        
+        <div style="padding: 40px">
+            <ui:insert name="contenido">
+
+            </ui:insert>
+        </div>
+    </h:body>
+</html>
+

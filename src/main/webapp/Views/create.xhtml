@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template = "../Templates/Template.xhtml">
+            <ui:define name = "contenido">
+                <h2 style="text-align: center; margin-bottom: 10px">Registrar nueva línea telefónica postpago</h2>
+                <hr/>
+                <h4 style="text-align: center;">Línea Telefónica</h4>
+                
+                <h:form id="myForm">
+                    <f:passThroughAttribute name="autocomplete" value="off"/>
+                    <br/>
+                    <h:messages globalOnly="true" id="globalmsg" class="alert alert-info" style="margin: 5px"/>
+                    <div class="form-group">
+                        <label for="numeroLinea">Número de Línea</label>
+                        <h:inputText id="numeroLinea" value = "#{lineaBean.registerObject.linNumeroLinea}" class="form-control" required="true" requiredMessage="El 'número de la línea' es obligatorio"/> 
+                        <h:messages id="errors1" for="numeroLinea" class="alert alert-danger" style="margin: 5px"/>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Persona</label>
+                        <h:selectOneMenu value="#{lineaBean.registerObject.perId}" class="custom-select" required="true" requiredMessage="El campo de Persona es obligatorio">
+                            <f:selectItems value="#{persona.all}"  var="person" itemLabel="#{person.perNombre} #{person.perApellido}" itemValue="#{person.perId}" />
+                        </h:selectOneMenu>
+                        <small>¿No encuentra la persona que desea registrar? <a href="createPersona.xhtml">Registrela acá</a></small>
+                    </div>
+                    <div class="form-group">
+                      <label for="estado">Estado: </label>
+                      <h:selectOneMenu value = "#{lineaBean.registerObject.linEstado}" class="custom-select" required="true" requiredMessage="El campo de estado es obligatorio"> 
+                        <f:selectItem itemValue = "Activo" itemLabel = "Activo" /> 
+                        <f:selectItem itemValue = "Suspendido" itemLabel = "Suspendido" /> 
+                      </h:selectOneMenu> 	
+                    </div>
+                    <h4 style="text-align: center;">Equipo Móvil</h4>
+                    <hr/>
+                    
+                    <div class="form-group">
+                      <label>Serial: </label>
+                      <h:inputText id="serial" value="#{lineaBean.equipoObject.equSerial}" class="form-control" required="true" requiredMessage="El campo de serial es requerido."/>
+                      <h:messages id="errorSerial" for="serial" class="alert alert-danger" style="margin: 5px"/>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Marca</label>
+                      <h:inputText id="marca" value="#{lineaBean.equipoObject.equMarca}" class="form-control" required="true" requiredMessage="El campo de marca es requerido."/> 
+                      <h:messages id="errormarca" for="marca" class="alert alert-danger" style="margin: 5px"/>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label>Descripción</label>
+                      <h:inputText id="descripcion" value="#{lineaBean.equipoObject.equDescripcion}" class="form-control" required="true" requiredMessage="El campo de descripción es requerido."/> 
+                      <h:messages id="errordescripcion" for="descripcion" class="alert alert-danger" style="margin: 5px"/>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="estado">Estado: </label>
+                      <h:selectOneMenu value = "#{lineaBean.equipoObject.equEstado}" class="custom-select" required="true" requiredMessage="El campo de estado es obligatorio"> 
+                          <f:selectItem itemValue = "No Reportado" itemLabel = "No Reportado" /> 
+                          <f:selectItem itemValue = "Reportado" itemLabel = "Reportado" /> 
+                      </h:selectOneMenu> 	
+                    </div>
+                    
+                    <h:commandButton class="btn btn-primary" value="Registrar" action="#{lineaBean.create}"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
